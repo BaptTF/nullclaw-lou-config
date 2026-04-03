@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "Auto-merge patch updates for base image",
+      "matchPackageNames": ["ghcr.io/nullclaw/nullclaw"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+    {
+      "description": "Require approval for minor/major updates",
+      "matchPackageNames": ["ghcr.io/nullclaw/nullclaw"],
+      "matchUpdateTypes": ["minor", "major"],
+      "automerge": false
+    }
+  ],
+  "dockerfile": {
+    "enabled": true
+  },
+  "github-actions": {
+    "enabled": true
+  }
+}
