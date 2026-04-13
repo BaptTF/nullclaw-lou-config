@@ -1,7 +1,7 @@
 # Image custom NullClaw avec outils DevOps/K8s
 # Part de l'image officielle (Alpine-based) et ajoute les outils necessaires
 
-FROM ghcr.io/nullclaw/nullclaw:latest
+FROM ghcr.io/rjullien/nullclaw:patched
 
 USER root
 
