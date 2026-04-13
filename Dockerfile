@@ -37,6 +37,18 @@ RUN curl -sSfL -o /usr/local/bin/steel \
     https://github.com/rjullien/cli/releases/download/v${STEEL_VERSION}/steel-x86_64-unknown-linux-musl \
     && chmod +x /usr/local/bin/steel
 
+# renovate: datasource=github-releases depName=jgm/pandoc
+ARG PANDOC_VERSION=3.9.0.2
+# Pandoc (static musl binary — not in Alpine repos)
+RUN curl -sSL https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-amd64.tar.gz \
+    | tar xz --strip-components=2 -C /usr/local/bin pandoc-${PANDOC_VERSION}/bin/pandoc
+
+# renovate: datasource=github-releases depName=typst/typst
+ARG TYPST_VERSION=0.14.2
+# Typst (static binary — not in Alpine repos)
+RUN curl -sSL https://github.com/typst/typst/releases/download/v${TYPST_VERSION}/typst-x86_64-unknown-linux-musl.tar.xz \
+    | tar xJ --strip-components=1 -C /usr/local/bin typst-x86_64-unknown-linux-musl/typst
+
 # Change the home folder to /nullclaw-data
 RUN sed -i 's|^nobody:.*|nobody:x:65534:65534:nobody:/nullclaw-data:/sbin/nologin|' /etc/passwd
 
